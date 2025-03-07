@@ -1,27 +1,29 @@
 import { inject } from '@angular/core';
 import { SpinnerService } from '@shared/services/spinner.service';
 import { finalize } from 'rxjs';
+import { HttpInterceptorFn } from '@angular/common/http';
 
-import {
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+// ***interceptor nuevo formato------------------
 
-@Injectable({ providedIn: 'root' })
-export class SpinnerInterceptor implements HttpInterceptor {
-  private readonly _spinnerService = inject(SpinnerService);
+export const SpinnerInterceptor: HttpInterceptorFn = (req, next) => {
+  const spinnerSrv = inject(SpinnerService);
+  spinnerSrv.show();
+  return next(req).pipe(finalize(() => spinnerSrv.hide()));
+};
 
-  intercept(
-    request: HttpRequest<unknown>,
-    next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
-    this._spinnerService.show();
-    return next
-      .handle(request)
-      .pipe(finalize(() => this._spinnerService.hide()));
-  }
-}
+// **interceptor antiguo-----------------------
+
+// @Injectable({ providedIn: 'root' })
+// export class SpinnerInterceptor implements HttpInterceptor {
+//   private readonly _spinnerService = inject(SpinnerService);
+
+//   intercept(
+//     request: HttpRequest<unknown>,
+//     next: HttpHandler
+//   ): Observable<HttpEvent<unknown>> {
+//     this._spinnerService.show();
+//     return next
+//       .handle(request)
+//       .pipe(finalize(() => this._spinnerService.hide()));
+//   }
+// }
