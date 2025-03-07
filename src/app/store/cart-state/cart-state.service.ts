@@ -53,7 +53,7 @@ export class CartStateService {
       productsCount:
         this._cartCalculatorService.calculateItemsCount(updatedProducts),
     });
-    this._toastrService.success('Product added!!', 'DOMINI STORE');
+    this._toastrService.success('Product added!!', 'ADM STORE');
   }
 
   removeFromCart(productId: number): void {
@@ -67,11 +67,11 @@ export class CartStateService {
       productsCount:
         this._cartCalculatorService.calculateItemsCount(updatedProducts),
     });
-    this._toastrService.success('Product removed!!', 'DOMINI STORE');
+    this._toastrService.success('Product removed!!', 'ADM STORE');
   }
 
   clearCart(): void {
     this.updateState(initialCartState);
-    this._toastrService.success('All Products removed!', 'DOMINI STORE');
+    this._toastrService.success('All Products removed!', 'ADM STORE');
   }
 }
