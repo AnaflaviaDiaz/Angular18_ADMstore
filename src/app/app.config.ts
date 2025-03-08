@@ -8,7 +8,7 @@ import localeEs from '@angular/common/locales/es';
 import {
   ApplicationConfig,
   LOCALE_ID,
-  provideZoneChangeDetection,
+  provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
@@ -22,6 +22,7 @@ registerLocaleData(localeEs, 'es');
 export const appConfig: ApplicationConfig = {
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },
+    provideExperimentalZonelessChangeDetection(),
     provideHttpClient(withFetch(), withInterceptors([SpinnerInterceptor])),
     provideAnimations(),
     provideToastr({
@@ -29,7 +30,6 @@ export const appConfig: ApplicationConfig = {
       timeOut: 1500,
       preventDuplicates: false,
     }),
-    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
   ],
 };
