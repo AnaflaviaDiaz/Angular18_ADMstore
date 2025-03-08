@@ -1,15 +1,17 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SpinnerService } from '@shared/services/spinner.service';
 
 @Component({
   selector: 'app-spinner',
   standalone: true,
-  imports: [NgIf, AsyncPipe],
+  imports: [AsyncPipe],
   template: `
-    <div class="flex-center" *ngIf="isLoading$ | async">
+    @if (isLoading$ | async) {
+    <div class="flex-center">
       <div class="spinner"></div>
     </div>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './spinner.component.scss',

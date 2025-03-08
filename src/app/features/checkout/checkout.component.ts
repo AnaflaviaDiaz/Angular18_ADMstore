@@ -1,10 +1,4 @@
-import {
-  AsyncPipe,
-  CurrencyPipe,
-  NgFor,
-  NgIf,
-  SlicePipe,
-} from '@angular/common';
+import { AsyncPipe, CurrencyPipe, NgFor, SlicePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { CheckoutService } from '@features/checkout/checkout.service';
 import { CartStateService } from 'src/app/store/cart-state/cart-state.service';
@@ -14,14 +8,7 @@ import { RemoveProductComponent } from '@shared/ui/remove/remove-product.compone
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [
-    RemoveProductComponent,
-    SlicePipe,
-    CurrencyPipe,
-    AsyncPipe,
-    NgIf,
-    NgFor,
-  ],
+  imports: [RemoveProductComponent, SlicePipe, CurrencyPipe, AsyncPipe, NgFor],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
 })

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CategoryFilterComponent } from '@features/categories/category-filter/category-filter.component';
@@ -19,7 +19,6 @@ import { CartStateService } from 'src/app/store/cart-state/cart-state.service';
     SpinnerComponent,
     FooterComponent,
     AsyncPipe,
-    NgIf,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
