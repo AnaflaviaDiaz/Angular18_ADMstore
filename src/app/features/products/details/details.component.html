@@ -8,11 +8,12 @@
         <h1 class="product-title">{{ product?.title }}</h1>
         <div class="my-4 flex-space-between">
           <div class="product-reviews">
-            <span *ngFor="let star of starsArray; let index = index">
-              @if (product.rating.rate) {
-              <span [innerHTML]="getStarSVG(index, product.rating.rate)"></span>
-              }
-            </span>
+            @for(star of starsArray; track $index; let idx = $index) { @if
+            (product.rating.rate) {
+            <span [innerHTML]="getStarSVG(idx, product.rating.rate)"></span>
+            } } @for(star of starsArray; track $index) {
+            <span> </span>
+            }
             <span class="ml-3">{{ product?.rating?.count }} reviews</span>
           </div>
         </div>

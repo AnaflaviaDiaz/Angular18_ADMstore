@@ -1,7 +1,13 @@
 <section class="product-container">
   <div class="product-grid">
-    <app-card *ngFor="let product of products$ | async; trackBy: trackById" (addToCartEvent)="onAddToCart($event)"
-      data-testid="product-card" class="product-card" [product]="product">
+    @for (product of products$ | async; track $index) {
+    <app-card
+      (addToCartEvent)="onAddToCart($event)"
+      data-testid="product-card"
+      class="product-card"
+      [product]="product"
+    >
     </app-card>
+    }
   </div>
 </section>

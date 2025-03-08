@@ -45,15 +45,15 @@
           [ngClass]="{ 'show-cart-animation': showCart }"
           class="cart-dropdown"
         >
-          <div
-            class="flex-space-between"
-            *ngFor="let product of cart?.products"
-          >
+          @for(product of cart?.products; track product.id) {
+          <div class="flex-space-between">
             <span
               >{{ product.quantity }} {{ product.title | slice : 0 : 10 }}</span
             >
             <span> {{ product.subTotal || product.price | currency }}</span>
           </div>
+
+          }
           <hr class="border-divider" />
           <div class="cart-total">
             Total:
