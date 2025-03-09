@@ -73,17 +73,29 @@ export class CartStateService {
   }
 
   removeFromCart(productId: number): void {
-    const currentState = this._cartState.getValue();
-    const updatedProducts = currentState.products.filter(
-      (p) => p.id !== productId
-    );
-    this.updateState({
-      products: updatedProducts,
-      totalAmount: this._cartCalculatorService.calculateTotal(updatedProducts),
-      productsCount:
-        this._cartCalculatorService.calculateItemsCount(updatedProducts),
-    });
-    this._toastrService.success('Product removed!!', 'ADM STORE');
+    try {
+      if (!productId) {
+        throw new Error('Invalid product ID');
+      }
+      const currentProducts = this._products();
+      const productExists = currentProducts.some(
+        (p: Product) => p.id === productId
+      );
+
+      if (productExists) {
+        this._products.update((products: Product[]) =>
+          products.filter((p: Product) => p.id !== productId)
+        );
+        this._toastrService.success('Product removed!!', 'ADM STORE');
+        return;
+      } else {
+        this._toastrService.warning('Product not found in cart');
+        return;
+      }
+    } catch (error) {
+      console.error('Error removing product', error);
+      this._toastrService.error('Error removing product');
+    }
   }
 
   clearCart(): void {
