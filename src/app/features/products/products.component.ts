@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { CartStateService } from 'src/app/store/cart-state/cart-state.service';
 
 import { CardComponent } from '@features/products/card/card.component';
@@ -19,7 +20,8 @@ export default class ProductsComponent implements OnInit {
   private readonly _productsService = inject(ProductsService);
   private readonly _cartService = inject(CartStateService);
 
-  products$ = this._productsService.products$;
+  // products$ = this._productsService.products$;
+  products$ = toSignal(this._productsService.products$);
 
   ngOnInit() {
     this._route.queryParams.subscribe((params) => {
