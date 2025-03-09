@@ -1,10 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   input,
-  Input,
-  Output,
+  output,
 } from '@angular/core';
 
 type AddToCartConfig = Record<'text', string>;
@@ -28,7 +26,7 @@ const defaultConfig: AddToCartConfig = {
 })
 export class AddToCartComponent {
   config = input<AddToCartConfig>(defaultConfig);
-  @Output() addToCartEvent = new EventEmitter<void>();
+  addToCartEvent = output();
 
   onAddToCart(): void {
     this.addToCartEvent.emit();
