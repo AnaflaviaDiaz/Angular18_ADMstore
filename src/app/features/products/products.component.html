@@ -1,6 +1,6 @@
 <section class="product-container">
   <div class="product-grid">
-    @for (product of products$(); track $index) {
+    @for (product of products(); track $index) {
     <app-card
       (addToCartEvent)="onAddToCart($event)"
       data-testid="product-card"
