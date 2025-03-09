@@ -26,7 +26,7 @@ import { CartStateService } from 'src/app/store/cart-state/cart-state.service';
 })
 export class AppComponent {
   currentRoute = '';
-  readonly cart$ = inject(CartStateService).cart$;
+  readonly cartStore = inject(CartStateService).cartStore;
 
   private readonly _router = inject(Router);
 

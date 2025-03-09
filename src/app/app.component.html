@@ -1,5 +1,5 @@
 <div class="flex flex-col h-screen">
-  <app-header [cart]="cart$ | async" />
+  <app-header [cart]="cartStore()" />
   @if (currentRoute === '' || currentRoute === 'products') {
   <app-hero />
   <app-category-filter />
