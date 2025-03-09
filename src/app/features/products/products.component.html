@@ -1,4 +1,5 @@
 <section class="product-container">
+  @defer (on viewport; prefetch on idle) {
   <div class="product-grid">
     @for (product of products(); track $index) {
     <app-card
@@ -8,6 +9,19 @@
       [product]="product"
     >
     </app-card>
-    } @empty {<p>No results yet!</p>}
+    } @empty {
+    <p>No results yet!</p>
+    }
   </div>
+  } @loading (minimum 500ms) {
+  <div class="loading-state">
+    <p>Cargando productos</p>
+  </div>
+  } @placeholder {
+  <div class="placeholder-state">
+    <p>Desplazate hacia abajo para cargar productos</p>
+  </div>
+  } @error {
+  <div class="error-state"><p>hubo un error</p></div>
+  }
 </section>
