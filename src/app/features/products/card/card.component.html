@@ -1,19 +1,19 @@
-@let myProduct = product;
+@let product = currentProduct();
 
 <div class="product-card">
   <div class="w-[320px] h-[430px] overflow-hidden bg-white rounded">
-    <a class="product-image-link" [routerLink]="['/products', (myProduct.id)]">
-      <img class="product-image" [src]="myProduct.image" [alt]="product.title" />
+    <a class="product-image-link" [routerLink]="['/products', (product.id)]">
+      <img class="product-image" [src]="product.image" [alt]="product.title" />
     </a>
     <div class="px-6 py-4">
       <div class="text-xl font-bold h-[60px] line-clamp-2">
-        <a [routerLink]="['/products', (myProduct.id)]">
-          {{ myProduct.title | slice: 0 : 25 }}</a>
+        <a [routerLink]="['/products', (product.id)]">
+          {{ product.title | slice: 0 : 25 }}</a>
       </div>
-      <p class="text-base text-gray-700 h-[80px] line-clamp-3">{{ myProduct.description | slice: 0 : 70 }}</p>
+      <p class="text-base text-gray-700 h-[80px] line-clamp-3">{{ product.description | slice: 0 : 70 }}</p>
     </div>
     <div class="px-6 py-4 flex-space-between">
-      <p class="product-price">{{ myProduct.price | currency:'EUR':'symbol':'1.2-2': 'es' }}</p>
+      <p class="product-price">{{ product.price | currency:'EUR':'symbol':'1.2-2': 'es' }}</p>
       <app-add-to-cart (addToCartEvent)="onAddToCart()" />
     </div>
   </div>
